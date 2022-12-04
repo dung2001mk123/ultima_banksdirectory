@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "id": "MB0412221234",
+            "group": "",
+            "name": "MB Bank",
+            "description": "",
+            "createBy": "Viet Dung",
+            "createDate": "04/12/2022",
+            "status": "",
+            "task": ""
+        },
+        {
+            "id": "VCB0412224030",
+            "group": "",
+            "name": "Vietcombank",
+            "description": "",
+            "createBy": "Dung Nong",
+            "createDate": "",
+            "status": "",
+            "task": ""
+        },
+        {
+            "id": "BIDV0412220955",
+            "group": "",
+            "name": "BIDV",
+            "description": "",
+            "createBy": "DungNV",
+            "createDate": "03/12/2022",
+            "status": "",
+            "task": ""
+        }
+    ]
+}
