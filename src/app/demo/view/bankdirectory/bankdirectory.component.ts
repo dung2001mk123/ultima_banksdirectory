@@ -10,14 +10,23 @@ import {AppBreadcrumbService} from '../../../app.breadcrumb.service';
 export class BankdirectoryComponent implements OnInit {
 
     banks: Bank[];
+    bank: Bank;
+    bankDialog: boolean;
+    submitted: boolean;
 
     constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
             {label: 'Banks Directory', routerLink: ['/favorites/banksdirectory']}
         ]);
     }
-
     ngOnInit(): void {
     }
+    hideDialog() {
+        this.bankDialog = false;
+        this.submitted = false;
+    }
+    saveBank() {
+        this.submitted = true;
 
+    }
 }
