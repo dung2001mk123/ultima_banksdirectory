@@ -10,7 +10,7 @@
                 <input type="text" placeholder="Search" class="p-inputtext p-component p-element">
             </span>
             <p-button label="Delete" icon="pi pi-trash" disabled="disabled" class="mr-2 mb-2"></p-button>
-            <p-button label="Create New" icon="pi pi-plus" class="mr-2 mb-2"></p-button>
+            <p-button label="Create New" icon="pi pi-plus" class="mr-2 mb-2" (click)="createNew()"></p-button>
         </div>
         <div class="col-12 md:col-12">
             <p-table [value]="banks" [rowHover]="true" [rows]="10" [paginator]="true" [filterDelay]="0"
@@ -105,7 +105,7 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="bankDialog" header="Add a new bank" [modal]="true" styleClass="p-fluid">
+        <p-dialog [(visible)]="bankDialog" [style]="{width: '450px'}" header="Add a new bank" [modal]="true" styleClass="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
                     <label for="id">Bank ID</label>

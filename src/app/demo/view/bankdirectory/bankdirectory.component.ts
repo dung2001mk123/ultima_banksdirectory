@@ -29,4 +29,8 @@ export class BankdirectoryComponent implements OnInit {
         this.submitted = true;
 
     }
+    createNew() {
+        this.submitted = false;
+        this.bankDialog = true;
+    }
 }
