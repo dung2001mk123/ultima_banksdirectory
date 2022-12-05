@@ -1,23 +1,29 @@
 <div class="grid-dashboard">
+    <p-toast></p-toast>
     <div class="card">
-        <div class="card-header">
-            <h5>Banks Directory</h5>
-        </div>
-        <p>Banks Directory use in system</p>
-        <div class="function">
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input type="text" placeholder="Search" class="p-inputtext p-component p-element">
-            </span>
-            <p-button label="Delete" icon="pi pi-trash" disabled="disabled" class="mr-2 mb-2"></p-button>
-            <p-button label="Create New" icon="pi pi-plus" class="mr-2 mb-2" (click)="createNew()"></p-button>
-        </div>
         <div class="col-12 md:col-12">
-            <p-table [value]="banks" [rowHover]="true" [rows]="10" [paginator]="true" [filterDelay]="0"
-                     [globalFilterFields]="['bank.id','bank.group','bank.name','bank.createBy','bank.createDate']">
+            <p-table #dt [value]="banks" [(selection)]="selectedBanks" [rowHover]="true" [rows]="10" [paginator]="true" [filterDelay]="0"
+                     [globalFilterFields]="['bank.id','bank.group','bank.name','bank.createBy','bank.createDate']"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="card-header">
+                        <h5>Banks Directory</h5>
+                    </div>
+                    <p>Banks Directory use in system</p>
+                    <div class="function">
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input type="text" style="width: 400px" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                   placeholder="Search" class="p-inputtext p-component p-element"/>
+                        </span>
+                        <p-button label="Delete" icon="pi pi-trash" class="p-button-danger mb-2" (click)="deleteSelected()" [disabled]="!selectedBanks || !selectedBanks.length"></p-button>
+                        <p-button label="Create New" icon="pi pi-plus" class="mr-2 mb-2" (click)="createNew()"></p-button>
+                    </div>
+                    <br>
+                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem"><p-tableCheckbox></p-tableCheckbox></th>
+                        <th style="width: 3rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
                         <th pSortableColumn="bank.id">
                             <div class="flex justify-content-between align-items-center">
                                 Bank ID
@@ -44,7 +50,7 @@
                             <div class="flex justify-content-between align-items-center">
                                 Create By
                                 <p-sortIcon field="bank.createBy"></p-sortIcon>
-                                <p-columnFilter type="text" field="bank.craeteBy" display="menu" class="ml-auto"></p-columnFilter>
+                                <p-columnFilter type="text" field="bank.createBy" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
                         <th pSortableColumn="bank.createDate">
@@ -108,33 +114,33 @@
         <p-dialog [(visible)]="bankDialog" [style]="{width: '450px'}" header="Add a new bank" [modal]="true" styleClass="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
-                    <label for="id">Bank ID</label>
+                    <label for="id">Bank ID (*)</label>
                     <input type="text" pInputText id="id" [(ngModel)]="bank.id" required>
-                    <small class="p-invalid" *ngIf="submitted && !bank.id">Bank ID is required</small>
+
                 </div>
                 <div class="field">
                     <label for="group">Bank Group</label>
-                    <input type="text" pInputText id="group" [(ngModel)]="bank.group" required>
-                    <small class="p-invalid" *ngIf="submitted && !bank.group">Bank group is required</small>
+                    <input type="text" pInputText id="group" [(ngModel)]="bank.group">
+
                 </div>
                 <div class="field">
-                    <label for="name">Bank Name</label>
+                    <label for="name">Bank Name (*)</label>
                     <input type="text" pInputText id="name" [(ngModel)]="bank.name" required>
-                    <small class="p-invalid" *ngIf="submitted && !bank.name">Bank Name is required</small>
+
                 </div>
                 <div class="field">
                     <label for="description">Description</label>
                     <input type="text" pInputText id="description" [(ngModel)]="bank.description">
                 </div>
                 <div class="field">
-                    <label for="createBy">Create By</label>
+                    <label for="createBy">Create By (*)</label>
                     <input type="text" pInputText id="createBy" [(ngModel)]="bank.createBy" required>
-                    <small class="p-invalid" *ngIf="submitted && !bank.createBy">This field is required</small>
+
                 </div>
                 <div class="field">
-                    <label for="createDate">Create Date</label>
+                    <label for="createDate">Create Date (*)</label>
                     <input type="text" pInputText id="createDate" [(ngModel)]="bank.createDate" required>
-                    <small class="p-invalid" *ngIf="submitted && !bank.createDate">This field is required</small>
+
                 </div>
                 <div class="field">
                     <label for="status">Status</label>

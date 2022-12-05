@@ -1,10 +1,10 @@
 export interface Bank {
-    id: string;
+    id?: string;
     group?: string;
-    name: string;
+    name?: string;
     description?: string;
-    createBy: string;
-    createDate: string;
-    status: string;
+    createBy?: string;
+    createDate?: string;
+    status?: string;
     task?: string;
 }

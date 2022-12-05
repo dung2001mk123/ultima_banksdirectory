@@ -32,7 +32,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            <p-tableCheckbox></p-tableCheckbox>
                         </th>
                         <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
                         <th>Image</th>
@@ -44,7 +44,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
-                    <tr>
+                    <tr class="p-selector-row">
                         <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
                         </td>
